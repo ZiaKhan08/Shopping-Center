@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "24.0.2"
+    defaultConfig {
+        applicationId "com.wjc.jokerwanshoppingmall"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "b24ec4e7610cea6fa8009a70", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:recyclerview-v7:25.0.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile project(':okhttputils')
+    compile files('libs/fastjson-1.2.4.jar')
+    compile files('libs/picasso-2.5.2.jar')
+    compile project(path: ':banner')
+    compile 'com.zhy:magic-viewpager:1.0.1'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile project(path: ':FlycoTabLayout_Lib')
+    compile project(path: ':ViewPagerIndicator_library')
+    compile project(path: ':opendanmaku')
+    compile files('libs/mta-sdk-1.6.2.jar')
+    compile files('libs/open_sdk_r5756.jar')
+    compile project(path: ':libzxing')
+    compile files('libs/ShareSDK-Alipay-2.7.10.jar')
+    compile files('libs/ShareSDK-Alipay-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Alipay-Moments-2.7.10.jar')
+    compile files('libs/ShareSDK-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Email-2.7.10.jar')
+    compile files('libs/ShareSDK-KaiXin-2.7.10.jar')
+    compile files('libs/ShareSDK-QQ-2.7.10.jar')
+    compile files('libs/ShareSDK-QZone-2.7.10.jar')
+    compile files('libs/ShareSDK-Renren-2.7.10.jar')
+    compile files('libs/ShareSDK-ShortMessage-2.7.10.jar')
+    compile files('libs/ShareSDK-SinaWeibo-2.7.10.jar')
+    compile files('libs/ShareSDK-TencentWeibo-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-2.7.10.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
+    compile files('libs/ShareSDK-Yixin-2.7.10.jar')
+    compile files('libs/ShareSDK-Yixin-Core-2.7.10.jar')
+    compile files('libs/ShareSDK-Yixin-Moments-2.7.10.jar')
+    compile files('libs/MobTools-2016.1107.1809.jar')
+    compile files('libs/MobCommons-2016.1107.1809.jar')
+    compile 'cn.jiguang:jpush:2.1.8'
+    // 此处以SDK 2.1.8版本为例
+    compile 'com.android.support:design:25.1.0'
+}
